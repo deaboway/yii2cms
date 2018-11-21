@@ -1,0 +1,32 @@
+# Indexes 是设定是否允许在目录下面没有index.html 的时候显示目录.
+# FollowSymLinks 决定是否可以通过符号连接跨越DocumentRoot。
+# 在Indexes前，加+代表允许目录浏览；加–代表禁止目录浏览。阻止Apache 将目录结构列表出来。
+# 在某些服务器配置中，mod_rewrite要求有followsymlinks，否则会显示500内部服务器错误。
+Options -Indexes +FollowSymLinks
+# 忽略文件列表行为
+IndexIgnore */*
+# 开启 mod_rewrite 用于美化 URL 功能的支持（译注：对应 pretty URL 选项）
+RewriteEngine on
+
+# 顺序很重要
+RewriteCond $1 ^h5\/
+RewriteRule ^(.*) frontend/web/index.php [L,PT]
+RewriteCond $1 ^admin\/
+RewriteRule ^(.*) backend/web/index.php [L,PT]
+
+# Block access to backup and source files. These files may be left by some
+# text/html editors and pose a great security danger, when anyone can access
+# them.
+<FilesMatch "(\.(bak|config|sql|fla|psd|ini|log|sh|inc|swp|dist|txt|md|json|lock|bat)|~)$">
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</FilesMatch>
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule "(^|/)\." - [F]
+
+# otherwise forward it to frontend/web/index.php
+RewriteRule . index.php

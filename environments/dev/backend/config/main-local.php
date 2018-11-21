@@ -20,6 +20,7 @@ if (!YII_ENV_TEST) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
     ];
+    $config['as access']['allowActions'] = ['*'];
 }
 
 return $config;

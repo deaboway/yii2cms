@@ -6,4 +6,11 @@ return [
             'cookieValidationKey' => '',
         ],
     ],
+    'as access' => [
+        'class' => 'rbac\components\AccessControl',
+        'allowActions' => [
+            'rbac/user/request-password-reset',
+            'rbac/user/reset-password'
+        ]
+    ],
 ];

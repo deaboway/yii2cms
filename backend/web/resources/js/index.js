@@ -1,6 +1,6 @@
 var $, tab;
 layui.config({
-    base: "/resources/js/"
+    base: "resources/js/"
 }).use(['tab', 'form', 'element', 'layer', 'jquery'], function () {
     tab = layui.tab();
 	$ = layui.jquery;

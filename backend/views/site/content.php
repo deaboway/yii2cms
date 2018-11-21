@@ -2,7 +2,7 @@
 use yii\helpers\Url;
 use backend\assets\LayuiAsset;
 
-LayuiAsset::addScript($this, 'plugins/echarts/echarts.min.js');
+LayuiAsset::addScript($this, '@web/plugins/echarts/echarts.min.js');
 ?>
 		<div class="layui-body layui-form top-50">
 			<div class="layui-tab marg0" lay-filter="tab" id="top_tabs_box">

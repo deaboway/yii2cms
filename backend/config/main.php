@@ -8,9 +8,10 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-	'name' => 'alili后台管理系统',
+	'name' => '后台管理系统',
     'basePath' => dirname(__DIR__),
     'language' => 'zh-CN',
+    'timeZone' => 'Asia/Shanghai',
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
