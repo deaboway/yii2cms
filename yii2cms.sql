@@ -21,19 +21,19 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `t_admin`;
 CREATE TABLE `t_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `nickname` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户昵称',
-  `head_pic` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户头像',
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nickname` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户昵称',
+  `head_pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户头像',
+  `auth_key` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_reset_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` smallint(6) NOT NULL DEFAULT '10',
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index` (`id`,`username`,`email`,`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_admin
@@ -47,30 +47,30 @@ INSERT INTO `t_admin` VALUES ('2', 'demo', '演示账号', 'https://www.deaboway
 DROP TABLE IF EXISTS `t_admin_log`;
 CREATE TABLE `t_admin_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `route` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_agent` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `gets` text COLLATE utf8_unicode_ci,
-  `posts` text COLLATE utf8_unicode_ci NOT NULL,
+  `route` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_agent` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `gets` text COLLATE utf8mb4_unicode_ci,
+  `posts` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `admin_id` int(11) NOT NULL,
-  `admin_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `ip` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `admin_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` int(11) NOT NULL,
   `updated_at` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31031 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Table structure for t_auth_assignment
 -- ----------------------------
 DROP TABLE IF EXISTS `t_auth_assignment`;
 CREATE TABLE `t_auth_assignment` (
-  `item_name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `user_id` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `item_name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`item_name`,`user_id`),
   CONSTRAINT `t_auth_assignment_ibfk_1` FOREIGN KEY (`item_name`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_auth_assignment
@@ -78,18 +78,21 @@ CREATE TABLE `t_auth_assignment` (
 INSERT INTO `t_auth_assignment` VALUES ('基本权限', '1', '1539312113');
 INSERT INTO `t_auth_assignment` VALUES ('文章管理权限', '1', '1539312113');
 INSERT INTO `t_auth_assignment` VALUES ('演示角色', '1', '1539312113');
-INSERT INTO `t_auth_assignment` VALUES ('演示角色', '2', '1521768786');
 INSERT INTO `t_auth_assignment` VALUES ('管理员', '1', '1516773830');
+INSERT INTO `t_auth_assignment` VALUES ('基本权限', '2', '1539312113');
+INSERT INTO `t_auth_assignment` VALUES ('文章管理权限', '2', '1539312113');
+INSERT INTO `t_auth_assignment` VALUES ('演示角色', '2', '1539312113');
+INSERT INTO `t_auth_assignment` VALUES ('管理员', '2', '1516773830');
 
 -- ----------------------------
 -- Table structure for t_auth_item
 -- ----------------------------
 DROP TABLE IF EXISTS `t_auth_item`;
 CREATE TABLE `t_auth_item` (
-  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` smallint(6) NOT NULL,
-  `description` text COLLATE utf8_unicode_ci,
-  `rule_name` varchar(64) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `rule_name` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `data` blob,
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
@@ -97,70 +100,12 @@ CREATE TABLE `t_auth_item` (
   KEY `rule_name` (`rule_name`),
   KEY `type` (`type`),
   CONSTRAINT `t_auth_item_ibfk_1` FOREIGN KEY (`rule_name`) REFERENCES `t_auth_rule` (`name`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_auth_item
 -- ----------------------------
 INSERT INTO `t_auth_item` VALUES ('/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/create', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/delete', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/delete-all', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/index', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/update', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article-group/view', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/create', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/delete', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/delete-all', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/index', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/update', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/article/view', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/delete', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/delete-all', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/index', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/nopass', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/pass', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/reply', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/comment/view', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/create', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/delete', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/delete-all', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/index', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/update', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/link/view', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/*', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/create', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/delete', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/delete-all', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/index', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/online-music', '2', null, null, null, '1527666273', '1527666273');
-INSERT INTO `t_auth_item` VALUES ('/article/music/update', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/music/view', '2', null, null, null, '1513838979', '1513838979');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/*', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/create', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/delete', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/delete-all', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/index', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/update', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo-group/view', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/*', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/create', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/delete', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/delete-all', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/index', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/update', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/photo/view', '2', null, null, null, '1513840543', '1513840543');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/*', '2', null, null, null, '1538989710', '1538989710');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/create', '2', null, null, null, '1538989710', '1538989710');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/delete', '2', null, null, null, '1538989710', '1538989710');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/index', '2', null, null, null, '1538989710', '1538989710');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/update', '2', null, null, null, '1538989710', '1538989710');
-INSERT INTO `t_auth_item` VALUES ('/article/test-article-group/view', '2', null, null, null, '1538989710', '1538989710');
 INSERT INTO `t_auth_item` VALUES ('/backup/*', '2', null, null, null, '1513838979', '1513838979');
 INSERT INTO `t_auth_item` VALUES ('/backup/export/*', '2', null, null, null, '1513838979', '1513838979');
 INSERT INTO `t_auth_item` VALUES ('/backup/export/index', '2', null, null, null, '1513838979', '1513838979');
@@ -308,91 +253,18 @@ INSERT INTO `t_auth_item` VALUES ('管理员', '1', '超级管理员权限', nul
 -- ----------------------------
 DROP TABLE IF EXISTS `t_auth_item_child`;
 CREATE TABLE `t_auth_item_child` (
-  `parent` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
-  `child` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `parent` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `child` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`parent`,`child`),
   KEY `child` (`child`),
   CONSTRAINT `t_auth_item_child_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `t_auth_item_child_ibfk_2` FOREIGN KEY (`child`) REFERENCES `t_auth_item` (`name`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_auth_item_child
 -- ----------------------------
 INSERT INTO `t_auth_item_child` VALUES ('管理员', '/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/article-group/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/article-group/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article-group/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/article/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/article/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/article/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/comment/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/nopass');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/pass');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/reply');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/comment/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/comment/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/link/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/link/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/link/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/music/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/index');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/music/online-music');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/online-music');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/music/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/music/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/photo-group/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/photo-group/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo-group/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/delete-all');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/photo/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/update');
-INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/article/photo/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/photo/view');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/*');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/create');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/delete');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/index');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/update');
-INSERT INTO `t_auth_item_child` VALUES ('管理员', '/article/test-article-group/view');
 INSERT INTO `t_auth_item_child` VALUES ('管理员', '/backup/*');
 INSERT INTO `t_auth_item_child` VALUES ('管理员', '/backup/export/*');
 INSERT INTO `t_auth_item_child` VALUES ('演示角色', '/backup/export/index');
@@ -557,12 +429,12 @@ INSERT INTO `t_auth_item_child` VALUES ('管理员', '/tools/upload-editor');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_auth_rule`;
 CREATE TABLE `t_auth_rule` (
-  `name` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
   `data` blob,
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_auth_rule
@@ -584,21 +456,21 @@ CREATE TABLE `t_config` (
   `updated_at` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `index` (`name`,`id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of t_config
 -- ----------------------------
 INSERT INTO `t_config` VALUES ('1', 'WEB_SITE_TITLE', '网站标题', '内容管理框架', '网站标题前台显示标题', '0', '0', '1378898976', '1510118190');
 INSERT INTO `t_config` VALUES ('2', 'WEB_SITE_DESCRIPTION', '网站描述', '内容管理框架', '网站搜索引擎描述', '1', '0', '1378898976', '1472528403');
-INSERT INTO `t_config` VALUES ('3', 'WEB_SITE_KEYWORD', '网站关键字', '黄龙飞11', '网站搜索引擎关键字', '8', '0', '1378898976', '1472528403');
+INSERT INTO `t_config` VALUES ('3', 'WEB_SITE_KEYWORD', '网站关键字', '微信机器人', '网站搜索引擎关键字', '8', '0', '1378898976', '1472528403');
 INSERT INTO `t_config` VALUES ('4', 'WEB_SITE_CLOSE', '网站关闭', '0', '网站关闭', '0', '0', '1379122533', '1379122533');
-INSERT INTO `t_config` VALUES ('10', 'WEB_SITE_ICP', '网站备案号', '沪ICP备12007941号-2', '设置在网站底部显示的备案号，如“沪ICP备12007941号-2', '9', '0', '1378900335', '1472528403');
-INSERT INTO `t_config` VALUES ('11', 'WEB_SITE_RESOURCES_URL', '上传图片服务器域名（可用二级域名）', 'https://resources.alilinet.com/', '域名格式（https://resources.alilinet.com/）', '3', '0', '1379053380', '1516948101');
+INSERT INTO `t_config` VALUES ('10', 'WEB_SITE_ICP', '网站备案号', '沪ICP备17026641号-1', '设置在网站底部显示的备案号，如“沪ICP备17026641号-1', '9', '0', '1378900335', '1472528403');
+INSERT INTO `t_config` VALUES ('11', 'WEB_SITE_RESOURCES_URL', '上传图片服务器域名（可用二级域名）', 'https://pics.deaboway.com/', '域名格式（https://pics.deaboway.com/）', '3', '0', '1379053380', '1516948101');
 INSERT INTO `t_config` VALUES ('13', 'COLOR_STYLE', '后台色系', 'default_color', '后台颜色风格', '10', '1', '1379122533', '1472528403');
 INSERT INTO `t_config` VALUES ('20', 'WEB_SITE_ALLOW_UPLOAD_TYPE', '站点允许上传文件类型', 'jpg,rar,png,gif,rar', '只需要填写后缀即可', '1', '1', '1512626843', '1517147572');
 INSERT INTO `t_config` VALUES ('21', 'OAUTH_QQ', '第三方QQ登录配置项', '{\r\n	\"client_id\": \"**********\",\r\n	\"client_secret\": \"**********\",\r\n	\"redirect_uri\": \"**********\"\r\n}', '第三方QQ登录配置项', '1', '1', '1516869590', '1539942431');
-INSERT INTO `t_config` VALUES ('22', 'WEB_SITE_AJAX_URL', '网站AJAX请求域名', 'https://www.alilinet.com/', '网站AJAX请求域名', '2', '1', '1516869798', '1516948115');
+INSERT INTO `t_config` VALUES ('22', 'WEB_SITE_AJAX_URL', '网站AJAX请求域名', 'https://www.deaboway.com/', '网站AJAX请求域名', '2', '1', '1516869798', '1516948115');
 INSERT INTO `t_config` VALUES ('23', 'WEB_SITE_BACKGROUND', '站点头部背景图', '/images/background.jpg', '站点头部背景图', '3', '1', '1516949337', '1516949390');
 INSERT INTO `t_config` VALUES ('24', 'NETEASE_COOKIE', '网易云音乐cookie', '888888', '网易云音乐cookie', '1', '1', '1527666426', '1539942454');
 
@@ -616,7 +488,7 @@ CREATE TABLE `t_menu` (
   PRIMARY KEY (`id`),
   KEY `parent` (`parent`),
   CONSTRAINT `t_menu_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `t_menu` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of t_menu
@@ -643,10 +515,10 @@ INSERT INTO `t_menu` VALUES ('31', '自动生成', '14', '/gii/default/index', '
 -- ----------------------------
 DROP TABLE IF EXISTS `t_migration`;
 CREATE TABLE `t_migration` (
-  `version` varchar(180) COLLATE utf8_unicode_ci NOT NULL,
+  `version` varchar(180) COLLATE utf8mb4_unicode_ci NOT NULL,
   `apply_time` int(11) DEFAULT NULL,
   PRIMARY KEY (`version`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
 -- Records of t_migration
@@ -662,29 +534,29 @@ INSERT INTO `t_migration` VALUES ('m140516_214808_actionlog', '1506561803');
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `nickname` varchar(32) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户昵称',
-  `head_pic` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户头像',
-  `auth_key` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `password_hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码hash',
-  `password_reset_token` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '重置密码凭据',
-  `access_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户访问数据凭证',
-  `mobile` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '手机号码',
-  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户电子邮箱',
+  `username` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nickname` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户昵称',
+  `head_pic` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户头像',
+  `auth_key` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_hash` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '密码hash',
+  `password_reset_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '重置密码凭据',
+  `access_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户访问数据凭证',
+  `mobile` varchar(11) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '手机号码',
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户电子邮箱',
   `status` smallint(6) NOT NULL DEFAULT '10' COMMENT '用户状态',
   `r_id` int(11) unsigned NOT NULL COMMENT '用户等级',
   `created_at` int(11) NOT NULL COMMENT '注册账号时间',
-  `created_address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '注册账号的地点',
-  `created_ip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '注册账号的IP',
+  `created_address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '注册账号的地点',
+  `created_ip` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '注册账号的IP',
   `last_login_date` int(11) DEFAULT NULL COMMENT '最后一次登录时间',
-  `last_login_ip` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '最后一次登录IP',
-  `last_login_address` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '最后一次登录地点',
+  `last_login_ip` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '最后一次登录IP',
+  `last_login_address` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '最后一次登录地点',
   `integral` int(11) DEFAULT '0' COMMENT '积分',
   `balance` decimal(10,0) DEFAULT '0' COMMENT '余额',
   `updated_at` int(11) NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`),
   KEY `index` (`id`,`username`,`mobile`,`email`,`r_id`,`status`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=455 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=455 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of t_user
@@ -697,13 +569,13 @@ INSERT INTO `t_user` VALUES ('1', 'deaboway', '大波巍', 'https://www.deaboway
 DROP TABLE IF EXISTS `t_user_rank`;
 CREATE TABLE `t_user_rank` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) COLLATE utf8_unicode_ci NOT NULL COMMENT '等级名称',
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '等级名称',
   `score` int(8) NOT NULL COMMENT '积分界限',
   `discount` decimal(6,2) NOT NULL COMMENT '折扣百分比',
   `status` tinyint(1) NOT NULL COMMENT '状态',
   PRIMARY KEY (`id`),
   KEY `index` (`id`,`name`,`discount`,`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of t_user_rank
