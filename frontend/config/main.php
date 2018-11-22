@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
-	'name' => 'alilinet',
+	'name' => 'deaboway',
     'basePath' => dirname(__DIR__),
     'language' => 'zh-CN',
     'bootstrap' => ['log'],

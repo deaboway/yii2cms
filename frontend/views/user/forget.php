@@ -15,7 +15,7 @@ $this->title = '忘记密码';
 	<div class="content-left">
 		<form action="<?=Url::to(['user/request-rassword-reset'])?>" method="post">
 			<div class="photo">
-				<img src="https://resources.alilinet.com/upload/file/2017/0609/caec0ef6f07036203d555810fd81c75a.jpg" />
+				<img src="/images/login.png" />
 			</div>
 			<div class="inp">
 				<input id="email" type="text" placeholder="请输入注册账号的邮箱地址" />
@@ -30,7 +30,7 @@ $this->title = '忘记密码';
 	<div class="content-right">
 		<form action="<?=Url::to(['user/request-rassword-reset'])?>" method="post">
 			<div class="photo">
-				<img src="https://resources.alilinet.com/upload/file/2017/0609/caec0ef6f07036203d555810fd81c75a.jpg" />
+				<img src="/images/login.png" />
 			</div>
 			<div class="inp">
 				<input id="mobile" type="text" placeholder="请输入注册账号的手机号码" />

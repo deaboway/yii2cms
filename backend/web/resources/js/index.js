@@ -228,7 +228,7 @@ layui.config({
             id: 'LAY_layuipro',
             btn: ['立即查看'],
             moveType: 1,
-			content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>欢迎使用本系统。<div style="text-align:center;margin-top: -25px;"><br><a target="_blank" style="color:blue;" href="http://www.alilinet.com">前台博客地址</a><br><a target="_blank" style="color:blue;" href="https://github.com/changchang700/yii2cms">后台开源地址</a><br><a target="_blank" style="color:blue;" href="http://qm.qq.com/cgi-bin/qm/qr?k=N9JkOSj4KvWRtb_7fa_YBAYrjziuBSTm">加入群群嗨皮</a></div></p></div>',
+			content: '<div style="padding:15px 20px; text-align:justify; line-height: 22px; text-indent:2em;border-bottom:1px solid #e2e2e2;"><p>欢迎使用本系统。<div style="text-align:center;margin-top: -25px;"><br><a target="_blank" style="color:blue;" href="https://www.deaboway.com">博客地址</a><br><a target="_blank" style="color:blue;" href="https://github.com/deaboway/yii2cms">系统开源地址</a></div></p></div>',
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
                 btn.css('text-align', 'center');

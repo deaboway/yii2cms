@@ -8,7 +8,8 @@ layui.config({
 $(document).ready(function () {	
 	connect();
 	function connect() {
-	   ws = new WebSocket("wss://socket.alilinet.com:9999");
+	    // todo 这里需要修改成自己的socket
+	   ws = new WebSocket("wss://socket.deaboway.com:9999");
 	   ws.onopen = onopen;
 	   ws.onmessage = onmessage; 
 	   ws.onclose = function() {

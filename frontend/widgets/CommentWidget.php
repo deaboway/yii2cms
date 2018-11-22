@@ -134,7 +134,7 @@ class CommentWidget extends Widget
 											<a href="#" rel="external nofollow" class="url">' . $value['nickname'] . '</a>
 										</span>
 										<div style="display: none;" class="reply">
-											<a rel="nofollow" class="comment-reply-link" href="http://www.alilinet.com/" onclick="return addComment.moveForm(\'comment-' . $value['id'] . '\', \'' . $value['id'] . '\', \'respond\', \''.$value['article_id'].'\')" aria-label="">回复</a>
+											<a rel="nofollow" class="comment-reply-link" href="https://www.deaboway.com/" onclick="return addComment.moveForm(\'comment-' . $value['id'] . '\', \'' . $value['id'] . '\', \'respond\', \''.$value['article_id'].'\')" aria-label="">回复</a>
 										</div>
 										<div class="text">
 											<span class="comment-to">

@@ -16,7 +16,7 @@ $this->title = '用户登录';
 	<div class="fix"></div>
 	<div id="landing-content">
 		<div class="photo">
-			<img src="https://resources.alilinet.com/upload/file/2017/0609/caec0ef6f07036203d555810fd81c75a.jpg" />
+			<img src="/images/login.png" />
 		</div>
 			<?php $form = ActiveForm::begin([
 				'id' => 'login-form',
