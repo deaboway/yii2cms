@@ -1,6 +1,7 @@
 <?php
 use backend\assets\AppAsset;
 use backend\assets\LayuiAsset;
+LayuiAsset::register($this);
 
 $action_list = [
 	'user/login',
